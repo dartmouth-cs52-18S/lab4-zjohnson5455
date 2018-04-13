@@ -6,3 +6,5 @@ function updateTime {
     $('#main').html('You have been on this page for ${num} seconds.');
   }
 }
+
+updateTime();
