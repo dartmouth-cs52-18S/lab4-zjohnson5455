@@ -1,11 +1,11 @@
 import $ from 'jquery';
 
 
-function updateTime (){
+function updateTime() {
   let num = 0;
-  setInterval(function() {
+  setInterval(() => {
     $('#main').html(`You have been on this page for ${num} seconds.`);
-    num++;
+    num += 1;
   }, 1000);
 }
 
