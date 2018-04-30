@@ -8,7 +8,6 @@ const initialState = {
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
-      console.log(`payload: ${action.payload}`);
       return Object.assign({}, state, { all: action.payload.posts });
     default:
       return state;

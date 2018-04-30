@@ -8,7 +8,7 @@ import { createPost } from '../actions/index';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPost: post => dispatch(createPost(post)),
+    createPost: (url, post, history) => dispatch(createPost(url, post, history)),
   };
 };
 
@@ -17,6 +17,9 @@ class ConnectedForm extends Component {
     super();
     this.state = {
       title: '',
+      tags: '',
+      content: '',
+      coverURL: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,27 +30,50 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     // event.preventDefault();
-    const { title } = this.state;
-    const id = Math.random() * 1000000000000000;
-    this.props.createPost({ title, id });
-    this.setState({ title: '' });
+    const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+    const API_KEY = '?key=z_johnson';
+    const fields = {
+      title: this.state.title, tags: this.state.tags, content: this.state.content, coverURL: this.state.coverURL,
+    };
+    this.props.createPost(`${ROOT_URL}/posts${API_KEY}`, fields, this.props.history);
   }
   render() {
-    const { title } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={this.handleChange}
-          />
-        </div>
-        <button type="submit">
-          SAVE
+      <div>
+        <p>Title: </p>
+        <input
+          type="text"
+          id="title"
+          value={this.state.title}
+          onChange={this.handleChange}
+        />
+        <p>Tags: </p>
+        <input
+          type="text"
+          id="tags"
+          value={this.state.tags}
+          onChange={this.handleChange}
+        />
+        <p>Content: </p>
+        <input
+          type="text"
+          id="content"
+          value={this.state.content}
+          onChange={this.handleChange}
+        />
+        <p>Cover URL: </p>
+        <input
+          type="text"
+          id="coverURL"
+          value={this.state.coverURL}
+          onChange={this.handleChange}
+        />
+        <p>Finished? </p>
+        <button onClick={this.handleSubmit}>
+            SUBMIT
         </button>
-      </form>
+      </div>
+
     );
   }
 }

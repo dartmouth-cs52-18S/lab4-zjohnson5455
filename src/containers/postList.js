@@ -14,10 +14,8 @@ class postList extends Component {
       return <p>Sorry! There was an error loading the items</p>;
     }
     if (this.props.posts.all.length === 0) {
-      console.log('reached');
-      return <p> Wait your turn </p>;
+      return <p>Connectivity is bad. Wait a few moments while we try again</p>;
     }
-    console.log(this.props.posts);
     return (
       <ul>
         {this.props.posts.all.map(post => (
