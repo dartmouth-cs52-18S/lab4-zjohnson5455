@@ -20,7 +20,11 @@ class postList extends Component {
       <ul>
         {this.props.posts.all.map(post => (
           <li key={post.id}>
-            {post.title}
+            <div className="post">
+              <button>Delete</button>
+              <h1>{post.title}</h1>
+              <h2>{post.tags}</h2>
+            </div>
           </li>
                 ))}
       </ul>

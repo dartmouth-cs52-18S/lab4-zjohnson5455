@@ -19,7 +19,7 @@ class ConnectedForm extends Component {
       title: '',
       tags: '',
       content: '',
-      coverURL: '',
+      cover_url: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +33,7 @@ class ConnectedForm extends Component {
     const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
     const API_KEY = '?key=z_johnson';
     const fields = {
-      title: this.state.title, tags: this.state.tags, content: this.state.content, coverURL: this.state.coverURL,
+      title: this.state.title, tags: this.state.tags, content: this.state.content, cover_url: this.state.cover_url,
     };
     this.props.createPost(`${ROOT_URL}/posts${API_KEY}`, fields, this.props.history);
   }
@@ -64,8 +64,8 @@ class ConnectedForm extends Component {
         <p>Cover URL: </p>
         <input
           type="text"
-          id="coverURL"
-          value={this.state.coverURL}
+          id="cover_url"
+          value={this.state.cover_url}
           onChange={this.handleChange}
         />
         <p>Finished? </p>
