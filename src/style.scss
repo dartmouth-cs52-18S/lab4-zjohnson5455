@@ -4,14 +4,19 @@ body, html {
   height: 100%;
 }
 
-.logo {
-  background-image: url('img/catComputer.jpg');
-  width: 100px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-size: contain;
+ul {
+  list-style-type: none;
+  background-color: pink;
+  padding: 10px;
+}
+li {
+  display: inline;
+  margin-right: 10px;
+}
+li a {
+  color: white;
 }
 
 .active {
-  color: pink;
+  color: red;
 }
