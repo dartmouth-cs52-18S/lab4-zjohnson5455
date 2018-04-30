@@ -3,38 +3,39 @@ import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/index';
 // https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3
 
-class ItemList extends Component {
+class postList extends Component {
   componentDidMount() {
-    this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+    const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+    const API_KEY = '?key=z_johnson';
+    this.props.fetchPosts(`${ROOT_URL}/posts${API_KEY}`);
   }
   render() {
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }
-    if (this.props.isLoading) {
-      return <p>Loading…</p>;
+    if (this.props.posts.all.length === 0) {
+      console.log('reached');
+      return <p> Wait your turn </p>;
     }
+    console.log(this.props.posts);
     return (
       <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>
-            {item.label}
+        {this.props.posts.all.map(post => (
+          <li key={post.id}>
+            {post.title}
           </li>
                 ))}
       </ul>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-    hasErrored: state.itemsHasErrored,
-    isLoading: state.itemsIsLoading,
-  };
-};
+const mapStateToProps = state => ({
+  posts: state.posts, // come back to this to verify correct indexing
+  // state.itemsHasErrored,
+});
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: url => dispatch(itemsFetchData(url)),
+    fetchPosts: url => dispatch(itemsFetchData(url)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(postList);

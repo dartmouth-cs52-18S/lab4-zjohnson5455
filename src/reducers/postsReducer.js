@@ -1,39 +1,18 @@
 // import { ActionTypes } from '../actions/index';
 
-/* const initialState = {
-  articles: [],
+const initialState = {
+  all: [],
+  post: {},
 };
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionTypes.ADD_ARTICLE:
-      return { ...state, articles: [...state.articles, action.payload] };
-    default:
-      return state;
-  }
-};
-export default rootReducer; */
 
-export function itemsHasErrored(state = false, action) {
-  switch (action.type) {
-    case 'ITEMS_HAS_ERRORED':
-      return action.hasErrored;
-    default:
-      return state;
-  }
-}
-export function itemsIsLoading(state = false, action) {
-  switch (action.type) {
-    case 'ITEMS_IS_LOADING':
-      return action.isLoading;
-    default:
-      return state;
-  }
-}
-export function items(state = [], action) {
+const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
-      return action.items;
+      console.log(`payload: ${action.payload}`);
+      return Object.assign({}, state, { all: action.payload.posts });
     default:
       return state;
   }
-}
+};
+
+export default postsReducer;

@@ -6,10 +6,10 @@ import { combineReducers } from 'redux';
 
 export default rootReducer;
 */
-import { items, itemsHasErrored, itemsIsLoading } from './postsReducer';
+import postsReducer from './postsReducer';
 
-export default combineReducers({
-  items,
-  itemsHasErrored,
-  itemsIsLoading,
+const rootReducer = combineReducers({
+  posts: postsReducer,
 });
+
+export default rootReducer;
