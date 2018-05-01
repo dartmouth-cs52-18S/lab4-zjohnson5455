@@ -1,6 +1,7 @@
+import { Link, withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData, deletePost, fetchPost } from '../actions/index';
+import { itemsFetchData, deletePost } from '../actions/index';
 // https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3
 
 class postList extends Component {
@@ -20,7 +21,7 @@ class postList extends Component {
           <li key={post.id}>
             <div className="post">
               <button onClick={() => this.props.deletePost(post.id, this.props.history)}>Delete</button>
-              <button onClick={() => this.props.fetchPost(post.id)}>Read More</button>
+              <Link to={`/posts/${post.id}`}>Read More</Link>
               <h1>{post.title}</h1>
               <h2>{post.tags}</h2>
             </div>
@@ -30,6 +31,7 @@ class postList extends Component {
     );
   }
 }
+// () => this.props.fetchPost(post.id)
 const mapStateToProps = state => ({
   posts: state.posts, // come back to this to verify correct indexing
   // state.itemsHasErrored,
@@ -37,8 +39,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(itemsFetchData()),
-    fetchPost: id => dispatch(fetchPost(id)),
     deletePost: (id, history) => dispatch(deletePost(id, history)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(postList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(postList));

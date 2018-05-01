@@ -60,7 +60,7 @@ export function itemsFetchData() {
       dispatch({ type: 'ITEMS_FETCH_DATA_SUCCESS', payload: { posts: response.data } });
     }).catch((error) => {
       // hit an error do something else!
-      console.log('There was an error!!!!');
+      console.log(`error ${error.message}`);
     });
     // on the completion of which you would dispatch some new action!
     // can now dispatch stuff

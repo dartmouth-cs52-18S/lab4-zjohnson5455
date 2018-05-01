@@ -4,27 +4,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import { createPost } from '../actions/index';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // createPost: (url, post, history) => dispatch(createPost(url, post, history)),
-  };
-};
+import { fetchPost } from '../actions/index';
 
 class Post extends Component {
-  constructor() {
-    super();
-    this.state = {
-      // isEditing: false,
-    };
+  componentDidMount() {
+    this.props.fetchPost(this.props.match.params.postID);
   }
 
   render() {
-    console.log(this.props.match.params.postID);
     return (
-      <p>Note</p>
+      <div>
+        <h1>{this.props.posts.post.title}</h1>
+        <h2>{this.props.posts.post.tags}</h2>
+        <h2>{this.props.posts.post.content}</h2>
+        <h2>{this.props.posts.post.cover_url}</h2>
+      </div>
+
     );
   }
 }
-export default withRouter(connect(null, mapDispatchToProps)(Post));
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPost: id => dispatch(fetchPost(id)),
+  };
+};
+
+const mapStateToProps = state => ({
+  posts: state.posts, // come back to this to verify correct indexing
+  // state.itemsHasErrored,
+});
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
