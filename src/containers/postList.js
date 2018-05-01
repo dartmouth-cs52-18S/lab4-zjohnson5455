@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/index';
+import { itemsFetchData, deletePost, fetchPost } from '../actions/index';
 // https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3
 
 class postList extends Component {
   componentDidMount() {
-    const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
-    const API_KEY = '?key=z_johnson';
-    this.props.fetchPosts(`${ROOT_URL}/posts${API_KEY}`);
+    this.props.fetchPosts();
   }
   render() {
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }
     if (this.props.posts.all.length === 0) {
-      return <p>Connectivity is bad. Wait a few moments while we try again</p>;
+      return <p>You have no notes to display! Wait a few moments for connectivity or add some notes!!!</p>;
     }
     return (
       <ul>
         {this.props.posts.all.map(post => (
           <li key={post.id}>
             <div className="post">
-              <button>Delete</button>
+              <button onClick={() => this.props.deletePost(post.id, this.props.history)}>Delete</button>
+              <button onClick={() => this.props.fetchPost(post.id)}>Read More</button>
               <h1>{post.title}</h1>
               <h2>{post.tags}</h2>
             </div>
@@ -37,7 +36,9 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: url => dispatch(itemsFetchData(url)),
+    fetchPosts: () => dispatch(itemsFetchData()),
+    fetchPost: id => dispatch(fetchPost(id)),
+    deletePost: (id, history) => dispatch(deletePost(id, history)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(postList);

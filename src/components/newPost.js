@@ -8,7 +8,7 @@ import { createPost } from '../actions/index';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPost: (url, post, history) => dispatch(createPost(url, post, history)),
+    createPost: (post, history) => dispatch(createPost(post, history)),
   };
 };
 
@@ -30,12 +30,10 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     // event.preventDefault();
-    const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
-    const API_KEY = '?key=z_johnson';
     const fields = {
       title: this.state.title, tags: this.state.tags, content: this.state.content, cover_url: this.state.cover_url,
     };
-    this.props.createPost(`${ROOT_URL}/posts${API_KEY}`, fields, this.props.history);
+    this.props.createPost(fields, this.props.history);
   }
   render() {
     return (

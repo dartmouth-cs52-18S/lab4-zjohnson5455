@@ -2,14 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import PostList from '../containers/postList';
 import NewPost from '../components/newPost';
-
-const Post = (props) => {
-  return (
-    <div>
-      <h1>View Post</h1>
-    </div>
-  );
-};
+import Post from '../components/post';
 
 const Nav = (props) => {
   return (
