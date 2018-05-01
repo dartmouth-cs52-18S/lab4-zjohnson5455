@@ -97,10 +97,10 @@ class Post extends Component {
     this.props.fetchPost(this.props.match.params.postID);
     return (
       <div>
+        <h2 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderURL()}</h2>
         <h1 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderTitle()}</h1>
         <h2 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderTags()}</h2>
         <h2 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderContent()}</h2>
-        <h2 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderURL()}</h2>
       </div>
 
     );

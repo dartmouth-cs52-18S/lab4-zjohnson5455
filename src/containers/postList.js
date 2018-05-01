@@ -1,6 +1,7 @@
 import { Link, withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import marked from 'marked';
 import { itemsFetchData, deletePost } from '../actions/index';
 // https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3
 
@@ -22,6 +23,7 @@ class postList extends Component {
             <div className="post">
               <button onClick={() => this.props.deletePost(post.id, this.props.history)}>Delete</button>
               <Link to={`/posts/${post.id}`}>Read More</Link>
+              <div dangerouslySetInnerHTML={{ __html: marked(post.cover_url || '') }} />
               <h1>{post.title}</h1>
               <h2>{post.tags}</h2>
             </div>
