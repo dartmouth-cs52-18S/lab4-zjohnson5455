@@ -17,7 +17,7 @@ class postList extends Component {
       return <p>You have no notes to display! Wait a few moments for connectivity or add some notes!!!</p>;
     }
     return (
-      <ul>
+      <ul className="postContainer">
         {this.props.posts.all.map(post => (
           <li key={post.id}>
             <div className="post">

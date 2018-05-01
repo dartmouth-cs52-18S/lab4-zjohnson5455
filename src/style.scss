@@ -14,13 +14,24 @@ li {
   margin-right: 10px;
 }
 li a {
-  color: white;
+  color: black;
 }
 
 .active {
   color: red;
 }
+
+.postContainer {
+  background: pink;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .post {
   border: 1px solid black;
-  width: 40vw;
+  width: 25vw;
+  padding: 10px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  background: white;
 }
