@@ -81,3 +81,21 @@ export function fetchPost(id) {
     // can now dispatch stuff
   };
 }
+
+export function updatePost(id, post) {
+  return (dispatch) => {
+    // here is where you would do your asynch axios calls
+    axios.put(`${ROOT_URL}/posts/${id}/${API_KEY}`, post).then((response) => {
+      axios.get(getURL).then((responses) => {
+        // do something with response.data  (some json)
+        dispatch({ type: 'ITEMS_FETCH_DATA_SUCCESS', payload: { posts: responses.data } });
+      }).catch((error) => {
+        // hit an error do something else!
+        console.log('There was an error!!!!');
+      });
+    }).catch((error) => {
+      // hit an error do something else!
+      console.log('There was an error!!!!');
+    });
+  };
+}
