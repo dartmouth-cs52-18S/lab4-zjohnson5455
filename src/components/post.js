@@ -90,7 +90,7 @@ class Post extends Component {
     if (this.state.isEditing) {
       return <input onChange={this.onURLChange} value={this.state.cover_url} type="text" />;
     } else {
-      return <div dangerouslySetInnerHTML={{ __html: marked(this.props.posts.post.cover_url || '') }} />;
+      return <div dangerouslySetInnerHTML={{ __html: marked(`![img](${this.props.posts.post.cover_url})` || '') }} />;
     }
   }
   render() {

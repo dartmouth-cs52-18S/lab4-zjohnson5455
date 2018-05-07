@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 const API_KEY = '?key=z_johnson';
 const getURL = `${ROOT_URL}/posts${API_KEY}`;
 
@@ -71,6 +71,7 @@ export function fetchPost(id) {
   return (dispatch) => {
     // here is where you would do your asynch axios calls
     axios.get(`${ROOT_URL}/posts/${id}/${API_KEY}`).then((response) => {
+      console.log(response);
       // do something with response.data  (some json)
       dispatch({ type: 'FETCH_POST', payload: { post: response.data } });
     }).catch((error) => {

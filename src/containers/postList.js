@@ -23,7 +23,7 @@ class postList extends Component {
             <div className="post">
               <button onClick={() => this.props.deletePost(post.id, this.props.history)}>Delete</button>
               <Link to={`/posts/${post.id}`}>Read More</Link>
-              <div dangerouslySetInnerHTML={{ __html: marked(post.cover_url || '') }} />
+              <div dangerouslySetInnerHTML={{ __html: marked(`![img](${post.cover_url})` || '') }} />
               <h1>{post.title}</h1>
               <h2>{post.tags}</h2>
             </div>

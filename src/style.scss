@@ -17,6 +17,11 @@ li a {
   color: black;
 }
 
+img {
+  width: 20vw;
+  height: auto;
+}
+
 .active {
   color: red;
 }
@@ -27,6 +32,7 @@ li a {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .post {
   border: 1px solid black;
   width: 25vw;
