@@ -94,7 +94,6 @@ class Post extends Component {
     }
   }
   render() {
-    this.props.fetchPost(this.props.match.params.postID);
     return (
       <div>
         <h2 onClick={() => this.handleEdit()} onBlur={() => this.handleBlur()}>{this.renderURL()}</h2>

@@ -87,9 +87,10 @@ export function updatePost(id, post) {
   return (dispatch) => {
     // here is where you would do your asynch axios calls
     axios.put(`${ROOT_URL}/posts/${id}/${API_KEY}`, post).then((response) => {
-      axios.get(getURL).then((responses) => {
+      axios.get(`${ROOT_URL}/posts/${id}/${API_KEY}`).then((responseSing) => {
+        console.log(responseSing);
         // do something with response.data  (some json)
-        dispatch({ type: 'ITEMS_FETCH_DATA_SUCCESS', payload: { posts: responses.data } });
+        dispatch({ type: 'FETCH_POST', payload: { post: responseSing.data } });
       }).catch((error) => {
         // hit an error do something else!
         console.log('There was an error!!!!');
