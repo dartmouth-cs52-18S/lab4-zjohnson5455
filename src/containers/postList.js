@@ -10,6 +10,7 @@ class postList extends Component {
     this.props.fetchPosts();
   }
   render() {
+    console.log(this.props.posts.all);
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }

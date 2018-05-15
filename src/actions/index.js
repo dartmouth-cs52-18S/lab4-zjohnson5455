@@ -130,7 +130,7 @@ export function signupUser(user, history) {
   console.log('I am getting to the signupUser');
   console.log(`${ROOT_URL}/signup`);
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email: user.email, password: user.password }).then((response) => {
+    axios.post(`${ROOT_URL}/signup`, { email: user.email, username: user.username, password: user.password }).then((response) => {
       dispatch({ type: 'AUTH_USER' });
       localStorage.setItem('token', response.data.token);
       history.push('/');

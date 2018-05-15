@@ -17,6 +17,7 @@ class SignUpForm extends Component {
     super();
     this.state = {
       email: '',
+      username: '',
       password: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +30,7 @@ class SignUpForm extends Component {
   handleSubmit(event) {
     // event.preventDefault();
     const user = {
-      email: this.state.email, password: this.state.password,
+      email: this.state.email, username: this.state.username, password: this.state.password,
     };
     console.log(user);
     this.props.signup(user, this.props.history);
@@ -43,6 +44,13 @@ class SignUpForm extends Component {
           type="text"
           id="email"
           value={this.state.email}
+          onChange={this.handleChange}
+        />
+        <p>Username: </p>
+        <input
+          type="text"
+          id="username"
+          value={this.state.username}
           onChange={this.handleChange}
         />
         <p>Password: </p>
