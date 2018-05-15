@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 class ConnectedForm extends Component {
   constructor() {
     super();
+    console.log('reached newPost');
     this.state = {
       title: '',
       tags: '',

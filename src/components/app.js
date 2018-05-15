@@ -6,6 +6,7 @@ import Post from '../components/post';
 import SignIn from '../components/signIn';
 import SignUp from '../components/signUp';
 import Nav from '../components/nav';
+import requireAuth from '../containers/requireAuth';
 
 
 const App = (props) => {
@@ -17,7 +18,7 @@ const App = (props) => {
           <Route exact path="/" component={PostList} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/new" component={requireAuth(NewPost)} />
           <Route path="/posts/:postID" component={Post} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
