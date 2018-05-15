@@ -1,19 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PostList from '../containers/postList';
 import NewPost from '../components/newPost';
 import Post from '../components/post';
+import SignIn from '../components/signIn';
+import SignUp from '../components/signUp';
+import Nav from '../components/nav';
 
-const Nav = (props) => {
-  return (
-    <nav className="navBar">
-      <ul>
-        <li><NavLink to="/" exact>Posts</NavLink></li>
-        <li><NavLink to="/posts/new">NewPost</NavLink></li>
-      </ul>
-    </nav>
-  );
-};
 
 const App = (props) => {
   return (
@@ -22,6 +15,8 @@ const App = (props) => {
         <Nav />
         <Switch>
           <Route exact path="/" component={PostList} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/posts/new" component={NewPost} />
           <Route path="/posts/:postID" component={Post} />
           <Route render={() => (<div>post not found </div>)} />
